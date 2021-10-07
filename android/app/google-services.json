@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "774127776949",
+    "project_id": "hare-krishna-japa-yagna-c8591",
+    "storage_bucket": "hare-krishna-japa-yagna-c8591.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:774127776949:android:af6fe11b7b1bb484d1bafc",
+        "android_client_info": {
+          "package_name": "com.example.harekrishnajapayagna"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "774127776949-l2oo8p8o6njh3okj482qa45jkvg58m5a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.harekrishnajapayagna",
+            "certificate_hash": "d1a269c49be5b3e56dc487fb81a824a6ce53023a"
+          }
+        },
+        {
+          "client_id": "774127776949-v16kht09fmdlqhen9b7ae18c0lp1ajat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi1_7W9f4QuvlT_IIQ1dqv8FunJvfHnyk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "774127776949-v16kht09fmdlqhen9b7ae18c0lp1ajat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
