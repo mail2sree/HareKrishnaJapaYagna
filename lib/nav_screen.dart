@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:harekrishnajapayagna/home.dart';
 import 'package:harekrishnajapayagna/main.dart';
+import 'package:harekrishnajapayagna/profile.dart';
 import 'package:harekrishnajapayagna/widgets/custom_app_bar.dart';
 import 'package:harekrishnajapayagna/widgets/custom_tab_bar.dart';
 import 'package:harekrishnajapayagna/widgets/responsive.dart';
@@ -16,7 +17,7 @@ class _NavScreenState extends State<NavScreen> {
     Tracker(),
     Scaffold(),
     Scaffold(),
-    Scaffold(),
+    Profile(),
     Scaffold(),
   ];
   final List<IconData> _icons = const [
