@@ -1,7 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:harekrishnajapayagna/home.dart';
-import 'package:harekrishnajapayagna/main.dart';
+import 'package:harekrishnajapayagna/japa-videos.dart';
 import 'package:harekrishnajapayagna/profile.dart';
 import 'package:harekrishnajapayagna/widgets/custom_app_bar.dart';
 import 'package:harekrishnajapayagna/widgets/custom_tab_bar.dart';
@@ -16,7 +15,7 @@ class _NavScreenState extends State<NavScreen> {
   final List<Widget> _screens = [
     Tracker(),
     Scaffold(),
-    Scaffold(),
+    JapaVideos(),
     Profile(),
     Scaffold(),
   ];
@@ -27,7 +26,7 @@ class _NavScreenState extends State<NavScreen> {
     Icons.person,
     Icons.logout
   ];
-  int _selectedIndex = 0;
+  int _selectedIndex = 4;
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;

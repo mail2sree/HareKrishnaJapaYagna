@@ -1,50 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:harekrishnajapayagna/home.dart';
 
 class Profile extends StatelessWidget {
   ScrollController _scrollController;
   var top = 0.0;
+  TextEditingController _name = TextEditingController();
+  TextEditingController _profileurl = TextEditingController();
+  TextEditingController _email = TextEditingController();
+  TextEditingController _password = TextEditingController();
+
+  void logout() {
+    FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
+    void _save() {
+      var name = _name.text;
+      var profileurl = _profileurl.text;
+      var email = _email.text;
+      var password = _password.text;
+      FirebaseAuth.instance.currentUser.updateDisplayName(name);
+      FirebaseAuth.instance.currentUser.updatePhotoURL(profileurl);
+      FirebaseAuth.instance.currentUser.updateEmail(email);
+      FirebaseAuth.instance.currentUser.updatePassword(password);
+      FirebaseAuth.instance.currentUser.reload();
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Tracker()),
+      );
+    }
+
     return Scaffold(
       body: Stack(children: [
         CustomScrollView(controller: _scrollController, slivers: <Widget>[
           SliverToBoxAdapter(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Padding(
                     padding: const EdgeInsets.only(left: 0.0),
-                    child: userTitle('Hare Krishna Guest')),
-                Padding(
-                    padding: const EdgeInsets.only(left: 0.0),
-                    child: userTitle('User Bag')),
-                Divider(
-                  thickness: 1,
-                  color: Colors.grey,
-                ),
-                Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    splashColor: Theme.of(context).splashColor,
-                    child: ListTile(
-                      onTap: () {},
-                      title: Text('Whishlist'),
-                      leading: Icon(Icons.card_giftcard_sharp),
-                    ),
-                  ),
-                ),
-                Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    splashColor: Theme.of(context).splashColor,
-                    child: ListTile(
-                      onTap: () => {},
-                      title: Text('Cart'),
-                      leading: Icon(Icons.shopping_bag_rounded),
-                    ),
-                  ),
-                ),
+                    child: userTitle(
+                        'Hare Krishna ${FirebaseAuth.instance.currentUser.phoneNumber}')),
                 Padding(
                     padding: const EdgeInsets.only(left: 0.0),
                     child: userTitle('User Information')),
@@ -52,11 +51,36 @@ class Profile extends StatelessWidget {
                   thickness: 1,
                   color: Colors.grey,
                 ),
-                userListFile('Email', 'Email Sub', 0, context),
-                userListFile('Phone Number', '4555', 1, context),
-                userListFile(
-                    'Shipping Address', 'Shipping Address', 2, context),
-                userListFile('Joined Date', 'date', 3, context),
+                TextField(
+                  controller: _name,
+                  decoration: InputDecoration(hintText: '        Name'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  controller: _profileurl,
+                  decoration:
+                      InputDecoration(hintText: '        Profile Image URL'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  controller: _email,
+                  decoration: InputDecoration(hintText: '        Email'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextField(
+                  controller: _password,
+                  decoration: InputDecoration(hintText: '        Password'),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(onPressed: _save, child: Text('Update')),
                 Padding(
                     padding: const EdgeInsets.only(left: 0.0),
                     child: userTitle('User Settings')),
@@ -64,7 +88,7 @@ class Profile extends StatelessWidget {
                   thickness: 1,
                   color: Colors.grey,
                 ),
-                userListFile('Logout', '', 4, context),
+                userListFile('Logout', '', 4, context, logout),
               ],
             ),
           ),
@@ -124,8 +148,8 @@ class Profile extends StatelessWidget {
     Icons.exit_to_app_rounded
   ];
 
-  Widget userListFile(
-      String title, String subtitle, int index, BuildContext context) {
+  Widget userListFile(String title, String subtitle, int index,
+      BuildContext context, Function function) {
     return Material(
       color: Colors.transparent,
       child: InkWell(
